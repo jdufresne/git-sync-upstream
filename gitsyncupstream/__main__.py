@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 import argparse
-import functools
-import subprocess
+
+from .git import Git
 
 
 def parse_args():
@@ -11,20 +11,6 @@ def parse_args():
     parser.add_argument("--force", action="store_true")
     parser.add_argument("branches", nargs="*")
     return parser.parse_args()
-
-
-class Git:
-    def run(self, cmd, *args, capture_stdout=True):
-        kwargs = {"check": True}
-        if capture_stdout:
-            kwargs["stdout"] = subprocess.PIPE
-            kwargs["text"] = True
-        r = subprocess.run(["git", cmd, *args], **kwargs)
-        return r.stdout.strip() if capture_stdout else None
-
-    def __getattr__(self, name):
-        name = name.replace("_", "-")
-        return functools.partial(self.run, name)
 
 
 def main():
