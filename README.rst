@@ -45,3 +45,5 @@ Then:
     $ git sync
     # To sync all branches
     $ git sync --all
+
+.. _PyPI: https://pypi.org
