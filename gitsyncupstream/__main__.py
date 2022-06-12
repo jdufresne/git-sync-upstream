@@ -5,7 +5,7 @@ import argparse
 from .git import Git
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--all-branches", action="store_true")
     parser.add_argument("--force", action="store_true")
@@ -13,7 +13,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
+def main() -> None:
     args = parse_args()
 
     git = Git()
@@ -22,14 +22,18 @@ def main():
     git.diff("--exit-code", capture_stdout=False)
 
     current_branch = git.branch("--show-current")
+    assert current_branch is not None
+
     git.checkout("--detach")
     try:
         git.fetch("--all", "--prune")
 
         if args.all_branches:
-            upstream_branches = git.for_each_ref(
+            out = git.for_each_ref(
                 "--format=%(refname:lstrip=3)", "refs/remotes/upstream/"
-            ).split()
+            )
+            assert out is not None
+            upstream_branches = out.split()
         elif args.branches:
             upstream_branches = args.branches
         else:
