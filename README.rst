@@ -28,7 +28,7 @@ _from_. Its branches and tags will be synced locally and _to_ `origin`.
     # To sync the current branch
     $ git-sync-upstream
     # To sync all branches
-    $ git-sync-upstream --all-branches
+    $ git-sync-upstream --all
 
 It is convenient to add a git alias to the command:
 
@@ -44,4 +44,4 @@ Then:
     # To sync the current branch
     $ git sync
     # To sync all branches
-    $ git sync --all-branches
+    $ git sync --all

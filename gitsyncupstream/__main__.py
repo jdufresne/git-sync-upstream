@@ -7,7 +7,7 @@ from .git import Git
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--all-branches", action="store_true")
+    parser.add_argument("--all", action="store_true")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("branches", nargs="*")
     return parser.parse_args()
