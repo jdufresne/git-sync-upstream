@@ -28,7 +28,7 @@ def main() -> None:
     try:
         git.fetch("--all", "--prune")
 
-        if args.all_branches:
+        if args.all:
             out = git.for_each_ref(
                 "--format=%(refname:lstrip=3)", "refs/remotes/upstream/"
             )
