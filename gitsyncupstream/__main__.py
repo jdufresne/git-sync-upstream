@@ -45,7 +45,7 @@ def main() -> None:
         options = ["--set-upstream", "--tags"]
         if args.force:
             options.append("--force-with-lease")
-            git.push(*options, "origin", *upstream_branches)
+        git.push(*options, "origin", *upstream_branches)
     finally:
         if current_branch:
             git.checkout(current_branch)
