@@ -42,8 +42,10 @@ def main() -> None:
         options = []
         if args.force:
             options.append("--force")
-        options.append("upstream")
-        options += [f"{branch}:{branch}" for branch in upstream_branches]
+        options.append(".")
+        options += [
+            f"refs/remotes/upstream/{branch}:{branch}" for branch in upstream_branches
+        ]
         git.fetch(*options)
 
         options = ["--set-upstream", "--tags"]
