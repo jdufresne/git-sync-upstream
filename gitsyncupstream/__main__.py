@@ -26,7 +26,10 @@ def main() -> None:
 
     git.checkout("--detach")
     try:
-        git.fetch("--all", "--tags", "--prune")
+        options = ["--all", "--tags", "--prune"]
+        if args.force:
+            options.append("--force")
+        git.fetch(*options)
 
         if args.all:
             out = git.for_each_ref(
